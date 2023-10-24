@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Age Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #calculator {
+            background-color: #fff;
+			padding: 86px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+			width: 317px;
+			margin: 0 auto;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+			font-size: xx-large;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 20px;
+			font-size: xx-large;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+			font-size: x-large;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        p#result {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Age Calculator</h1>
+    <div id="calculator">
+        <label for="birthDate">Enter your birthdate:</label>
+        <input type="date" id="birthDate">
+        <button onclick="calculateAge()">Calculate Age</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        function calculateAge() {
+            var birthDate = new Date(document.getElementById("birthDate").value);
+            var today = new Date();
+            
+            var ageInMilliseconds = today - birthDate;
+            var ageDate = new Date(ageInMilliseconds);
+            
+            var years = Math.abs(ageDate.getUTCFullYear() - 1970);
+            var months = ageDate.getUTCMonth();
+            var days = ageDate.getUTCDate() - 1; // Subtract 1 to get days
+
+            document.getElementById("result").innerHTML = "Your age is: " + years + " years, " + months + " months, and " + days + " days";
+        }
+    </script>
+</body>
+</html>

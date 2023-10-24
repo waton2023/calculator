@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .input-container {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+    <title>Days Between Two Dates Calculator</title>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Days Between Two Dates</h1>
+        <div class="input-container">
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate">
+        </div>
+        <div class="input-container">
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate">
+        </div>
+        <button id="calculate">Calculate</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const calculateButton = document.getElementById("calculate");
+            const resultElement = document.getElementById("result");
+
+            calculateButton.addEventListener("click", function () {
+                const startDate = new Date(document.getElementById("startDate").value);
+                const endDate = new Date(document.getElementById("endDate").value);
+
+                if (!isNaN(startDate) && !isNaN(endDate)) {
+                    const oneDay = 24 * 60 * 60 * 1000; // One day in milliseconds
+                    const daysBetween = Math.round(Math.abs((endDate - startDate) / oneDay));
+
+                    resultElement.textContent = `There are ${daysBetween} days between the selected dates.`;
+                } else {
+                    resultElement.textContent = "Please enter valid start and end dates.";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
